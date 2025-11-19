@@ -64,6 +64,7 @@ Static Function ReportDef()
 	TRCell():New(oiSec1,"D1_TOTAL"		,"QRY"/*Tabela*/,"Vlr Total"			,PesqPict("SD1","D1_TOTAL"    ,18),TamSX3("D1_TOTAL")[1],/*lPixel*/,/*{|| cValToChar(Stod(QRY->E2_VENCTO)) }*/,"LEFT"/*cAlign*/,/*lLineBreak*/,"LEFT"/*cHeaderAlign*/, /*lCellBreak*/, /*nColSpace*/,/*lAutoSize*/.F.)
 	TRCell():New(oiSec1,"D1_EMISSAO"		,"QRY"/*Tabela*/,"Data Emissão"			, "@D",TamSX3("D1_EMISSAO")[1],/*lPixel*/,{|| SToD(QRY->D1_EMISSAO)},"LEFT"/*cAlign*/,/*lLineBreak*/,"LEFT"/*cHeaderAlign*/, /*lCellBreak*/, /*nColSpace*/,/*lAutoSize*/.F.)
 
+	oBreak := Trbreak():New(oiSec1, oisec1:cell("A2_COD"), {|| "Proximo Fornecedor:" + QRY->A2_COD + " - " + QRY->A2_NOME}, .F.)
 Return(oReport)
 
 
