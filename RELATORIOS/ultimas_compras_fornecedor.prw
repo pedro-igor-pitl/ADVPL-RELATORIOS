@@ -6,9 +6,8 @@
 Relatorio de Relação de baixa(Titulos Baixados).
 @type function
 @version 1.0
-@author Amarilson Ribeiro
-@since 26/08/2025
-@Uso BENEL
+@author Pedro Igor
+@since 19/11/2025
 /*/
 User Function ULTIMAS_COMPRAS()
 
@@ -31,7 +30,7 @@ Determinação da seção que serão impressas no relatório
 @type function
 @version 1.0
 @author Pedro Igor
-@since 17/04/2025
+@since 19/11/2025
 /*/
 Static Function ReportDef()
 
@@ -62,10 +61,8 @@ Static Function ReportDef()
 	TRCell():New(oiSec1,"A2_NOME"		,"QRY"/*Tabela*/,"Nome Fornecedor"	    	, "@!", 10 	,/*lPixel*/,/*{|| code-block de impressao }*/,"LEFT"/*cAlign*/,/*lLineBreak*/,"LEFT"/*cHeaderAlign*/, /*lCellBreak*/, /*nColSpace*/,/*lAutoSize*/.F.)
 	TRCell():New(oiSec1,"D1_COD"		,"QRY"/*Tabela*/,"Cod. Produto"			, "@!", 10		,/*lPixel*/,/*{|| code-block de impressao }*/,"LEFT"/*cAlign*/,/*lLineBreak*/,"LEFT"/*cHeaderAlign*/, /*lCellBreak*/, /*nColSpace*/,/*lAutoSize*/.F.)
 	TRCell():New(oiSec1,"B1_DESC"		,"QRY"/*Tabela*/,"Desc. Produto"			, "@!", 20		,/*lPixel*/,/*{|| code-block de impressao }*/,"LEFT"/*cAlign*/,/*lLineBreak*/,"LEFT"/*cHeaderAlign*/, /*lCellBreak*/, /*nColSpace*/,/*lAutoSize*/.F.)
-	TRCell():New(oiSec1,"D1_TOTAL"		,"QRY"/*Tabela*/,"Vlr Total"			,"@E 999,999,999.99", 13	,/*lPixel*/,/*{|| cValToChar(Stod(QRY->E2_VENCTO)) }*/,"LEFT"/*cAlign*/,/*lLineBreak*/,"LEFT"/*cHeaderAlign*/, /*lCellBreak*/, /*nColSpace*/,/*lAutoSize*/.F.)
-	TRCell():New(oiSec1,"D1_EMISSAO"		,"QRY"/*Tabela*/,"Data Emissão"			, "@!", 16		,/*lPixel*/,/*{|| code-block de impressao }*/,"LEFT"/*cAlign*/,/*lLineBreak*/,"LEFT"/*cHeaderAlign*/, /*lCellBreak*/, /*nColSpace*/,/*lAutoSize*/.F.)
-
-	//oBreak := Trbreak():New(oiSec1, oiSec1:Cell("CliFor"),{||"Total Fornecedor"}, .F.)
+	TRCell():New(oiSec1,"D1_TOTAL"		,"QRY"/*Tabela*/,"Vlr Total"			,PesqPict("SD1","D1_TOTAL"    ,18),TamSX3("D1_TOTAL")[1],/*lPixel*/,/*{|| cValToChar(Stod(QRY->E2_VENCTO)) }*/,"LEFT"/*cAlign*/,/*lLineBreak*/,"LEFT"/*cHeaderAlign*/, /*lCellBreak*/, /*nColSpace*/,/*lAutoSize*/.F.)
+	TRCell():New(oiSec1,"D1_EMISSAO"		,"QRY"/*Tabela*/,"Data Emissão"			, "@D",TamSX3("D1_EMISSAO")[1],/*lPixel*/,{|| SToD(QRY->D1_EMISSAO)},"LEFT"/*cAlign*/,/*lLineBreak*/,"LEFT"/*cHeaderAlign*/, /*lCellBreak*/, /*nColSpace*/,/*lAutoSize*/.F.)
 
 Return(oReport)
 
@@ -75,7 +72,7 @@ Return(oReport)
 	Montagem da query para impressao do relatorio
 	@type  Function Static
 	@author Pedro Igor
-	@since 18/11/2025
+	@since 19/11/2025
 /*/
 Static Function PrintReport(oReport)
 	Local cDB := TCGetDB()
